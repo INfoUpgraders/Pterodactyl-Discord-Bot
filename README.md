@@ -29,7 +29,15 @@ This is an open source Discord Bot project that allows you to manage the Pteroda
     ```py
     client = PterodactylClient('PANEL_LINK', 'SECRET_APPLICATION_API')
     ```
-    
+
+# Customization
+- Customize the bot status!
+ - Go to: ![the code](/bot.py) and under
+ ```py
+ activity = discord.Activity(name='CUSTOM_STATUS', type=discord.ActivityType.watching)
+ ```
+ you can set `CUSTOM_STATUS` to whatever you want, you can also change `watching` to `playing` so the status says `**Playing** CUSTOM_STATUS`
+
 
 # Commands
 - Normal Commands

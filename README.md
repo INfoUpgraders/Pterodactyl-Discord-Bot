@@ -5,7 +5,7 @@ This is an open source Discord Bot project that allows you to manage the Pteroda
 
 
 # How to get started
-- First what you need to get is your Pterodactyl Panel link and place it in the `PANEL_LINK` [section of the code](/bot.py). Don't forget to include the `http(s)://` on the link either.
+- First what you need to get is your Pterodactyl Panel link and place it in the `PANEL_LINK` [section of the code](/bot.py). Don't forget to include the `http(s)://` on the link too.
 - You need to obtain your **super secret _applcation_ API** by doing: 
   - 1. Make sure you are in the Panel under _Admin Mode_ and head over to the `Application API` section to the left.
   ![admin application](https://gyazo.com/67b15ab1b11873fdae02f7038f47d8d2.gif)
@@ -20,7 +20,7 @@ This is an open source Discord Bot project that allows you to manage the Pteroda
     
     4. Fill out the description with what you want!
     5. Click `Create Credentials`!
-    6. ***Insert the `key` where `SECRET_APPLICATION_API` is in the code (under the `client` variable)
+    6. ***Insert the `key` where `SECRET_APPLICATION_API` is in the code (under the `client` variable)***
 
 # Commands
 - Normal Commands

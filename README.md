@@ -29,10 +29,10 @@ This is an open source Discord Bot project that allows you to manage the Pteroda
     ```py
     client = PterodactylClient('PANEL_LINK', 'SECRET_APPLICATION_API')
     ```
-    7. Create a Bot Token by going to ![Discords Applications Section](https://discord.com/developers/applications) and click `New Application` then you can name it whatever you want. After that, navigate to the `Bot` tab and click `Create Bot Application` once you created the bot application, click on ``Copy`` under the **Token** tab of the `Bot` Section and paste it in as ``BOT_TOKEN`` ![in the code](/bot.py)
+    7. Create a Bot Token by going to [Discords Applications Section](https://discord.com/developers/applications) and click `New Application` then you can name it whatever you want. After that, navigate to the `Bot` tab and click `Create Bot Application` once you created the bot application, click on ``Copy`` under the **Token** tab of the `Bot` Section and paste it in as ``BOT_TOKEN`` [in the code](/bot.py)
  ```py
  bot.run('BOT_TOKEN', reconnect=True, bot=True)
-    ```
+ ```
     
 # Customization
 - Customize the bot status!

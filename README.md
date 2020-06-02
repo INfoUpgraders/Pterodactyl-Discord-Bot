@@ -15,4 +15,7 @@ This is an open source Discord Bot project that allows you to manage the Pteroda
     ![create new](https://i.gyazo.com/c3ca37f6c68338ffc23d4626fe810c3e.png)
     
     3. Select all permissions as `Read & Write` 
+    
+    ![read and write perms](https://gyazo.com/b75fa03ff5d44d37683670ab13ba2f0b.png)
+    
     4. Fill out the description with what you want!

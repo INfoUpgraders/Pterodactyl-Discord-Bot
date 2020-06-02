@@ -19,3 +19,16 @@ This is an open source Discord Bot project that allows you to manage the Pteroda
     ![read and write perms](https://gyazo.com/b75fa03ff5d44d37683670ab13ba2f0b.png)
     
     4. Fill out the description with what you want!
+
+# Commands
+- Normal Commands
+  - `,ping` Allows you to check the bots latency.
+  - `,uptime` Allows you to check how long the bot has been up for.
+- Panel Commands
+  - `,create <arg>` Creates `<arg>` which can be: `server`
+  - `,getuser <user_attribute>` Allows you to lookup users on the panel.
+  - `,link` Allows you to link a Discord user with a panel ID (must have [linked.json](/linked.json) to do it)
+# Features
+- Customizable: Bot Prefix, Panel Link, Application API, Bot Status, Bot Token
+- Allows you to link Panel Users with Discord Users
+- More **coming soon**

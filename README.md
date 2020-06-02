@@ -19,6 +19,8 @@ This is an open source Discord Bot project that allows you to manage the Pteroda
     ![read and write perms](https://gyazo.com/b75fa03ff5d44d37683670ab13ba2f0b.png)
     
     4. Fill out the description with what you want!
+    5. Click `Create Credentials`!
+    6. ***Insert the `key` where `SECRET_APPLICATION_API` is in the code (under the `client` variable)
 
 # Commands
 - Normal Commands

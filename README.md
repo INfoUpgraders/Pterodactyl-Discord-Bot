@@ -23,7 +23,7 @@ This is an open source Discord Bot project that allows you to manage the Pteroda
     
     4. Fill out the description with what you want!
     5. Click `Create Credentials`!
-    6. ***Insert the `key` where `SECRET_APPLICATION_API` is in the code [section of the code](/bot.py) (under the `client` variable)***
+    6. Insert the `key` where `SECRET_APPLICATION_API` is in the [code](/bot.py) (under the `client` variable)
     
     ![key](https://i.gyazo.com/819203a317365427348c6fad677ef6a6.png)
     ```py

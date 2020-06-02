@@ -17,7 +17,7 @@ from pymongo import MongoClient
 bot = commands.Bot(command_prefix = ',', case_insensitve=True)
 bot.launch_time = datetime.utcnow()
 
-client = PterodactylClient('http(s)://PANEL_LINK', 'SECRET_APPLICATION_API')
+client = PterodactylClient('PANEL_LINK', 'SECRET_APPLICATION_API')
 
 # ONLINE + STATUS EVENT
 @bot.event

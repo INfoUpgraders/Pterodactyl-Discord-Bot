@@ -36,7 +36,7 @@ This is an open source Discord Bot project that allows you to manage the Pteroda
     
 # Customization
 - Customize the bot status!
- - Go to: ![the code](/bot.py) and under
+ - Go to: [the code](/bot.py) and under
  ```py
  activity = discord.Activity(name='CUSTOM_STATUS', type=discord.ActivityType.watching)
  ```

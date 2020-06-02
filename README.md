@@ -23,9 +23,9 @@ This is an open source Discord Bot project that allows you to manage the Pteroda
     6. ***Insert the `key` where `SECRET_APPLICATION_API` is in the code (under the `client` variable)***
     
     ![key](https://i.gyazo.com/819203a317365427348c6fad677ef6a6.png)
-    ``py
+    ```py
     client = PterodactylClient('PANEL_LINK', 'SECRET_APPLICATION_API')
-    ``
+    ```
     
 
 # Commands

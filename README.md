@@ -5,4 +5,4 @@ This is an open source Discord Bot project that allows you to manage the Pteroda
 
 
 # How to get started
-First what you need to get is your Pterodactyl Panel link and place it in `PANEL_LINK` [section of the code](/bot.py).
+- First what you need to get is your Pterodactyl Panel link and place it in the `PANEL_LINK` [section of the code](/bot.py).

@@ -26,7 +26,7 @@ async def on_ready():
     activity = discord.Activity(name='CUSTOM_STATUS', type=discord.ActivityType.watching)
     await bot.change_presence(activity=activity)
     print(f'Successfully logged in and booted...!')
-    
+
 # UPTIME COMMAND
 @bot.command()
 async def uptime(ctx):
@@ -44,44 +44,92 @@ async def ping(ctx):
     end = time.perf_counter()
     duration = (end - start) * 1000
     await message.edit(content='Pong! {:.2f}ms'.format(duration))
-    
-# CREATE PANEL SERVER    
+
+# CREATE PANEL SERVER
 @bot.command()
 @commands.has_permissions(manage_messages=True)
 async def create(ctx, *, arg1 = None):
     if arg1 == "server":
+        scEmbed = discord.Embed(description="Successfully Cancelled!",
+        colour=0x6a8dd3, timestamp=ctx.message.created_at)
+
+        toEmbed = discord.Embed(description="Cancelled.",
+        colour=0x6a8dd3, timestamp=ctx.message.created_at)
+
+        sEmbed = discord.Embed(description="Creating Server!",
+        colour=0x6a8dd3, timestamp=ctx.message.created_at)
+
         def check(m):
-            return m.author == ctx.message.author
+            return m.author == ctx.message.author and m.channel == ctx.channel
         try:
-            await ctx.send('Server Name?')
-            q1 = await bot.wait_for('message', timeout=120.0, check=check)
+            #f95439
+            await ctx.send("Server Name?")
+            q1 = await bot.wait_for('message', timeout=300.0, check=check)
+            if "cancel" in q1.content.lower():
+                return await ctx.send(embed=scEmbed)
             await ctx.send(f"Panel User ID?")
-            q2 = await bot.wait_for('message', timeout=120.0, check=check)
+            q2 = await bot.wait_for('message', timeout=300.0, check=check)
+            if "cancel" in q2.content.lower():
+                return await ctx.send(embed=scEmbed)
             await ctx.send(f"Nest ID?")
-            q3 = await bot.wait_for('message', timeout=120.0, check=check)
+            q3 = await bot.wait_for('message', timeout=300.0, check=check)
+            if "cancel" in q3.content.lower():
+                return await ctx.send(embed=scEmbed)
             await ctx.send(f"Egg ID?")
-            q4 = await bot.wait_for('message', timeout=120.0, check=check)
+            q4 = await bot.wait_for('message', timeout=300.0, check=check)
+            if "cancel" in q4.content.lower():
+                return await ctx.send(embed=scEmbed)
             await ctx.send(f"Memory Limit?")
-            q5 = await bot.wait_for('message', timeout=120.0, check=check)
+            q5 = await bot.wait_for('message', timeout=300.0, check=check)
+            if "cancel" in q5.content.lower():
+                return await ctx.send(embed=scEmbed)
             await ctx.send("Disk Limit?")
-            q6 = await bot.wait_for('message', timeout=120.0, check=check)
+            q6 = await bot.wait_for('message', timeout=300.0, check=check)
+            if "cancel" in q6.content.lower():
+                return await ctx.send(embed=scEmbed)
             await ctx.send("CPU Limit?")
-            q7 = await bot.wait_for('message', timeout=120.0, check=check)
-        
-            client.servers.create_server(name=str(q1.content), user_id=int(q2.content), nest_id=int(q3.content), 
-                                        egg_id=int(q4.content), memory_limit=int(q5.content), cpu_limit=int(q7.content), swap_limit=0, 
-                                        disk_limit=int(q6.content), location_ids=[1])
-    
-            await ctx.send("Server installing... [Please wait: 5 minutes]")
-    
+            q7 = await bot.wait_for('message', timeout=300.0, check=check)
+            if "cancel" in q7.content.lower():
+                return await ctx.send(embed=scEmbed)
+
+            mEmbed = discord.Embed(description="Is this correct?",
+            colour=0x6a8dd3, timestamp=ctx.message.created_at)
+            mEmbed.add_field(name="Server Name", value=f"{str(q1.content)}", inline=True)
+            mEmbed.add_field(name="Panel User ID", value=f"#{str(q2.content)}", inline=True)
+            mEmbed.add_field(name="Nest ID", value=f"#{str(q3.content)}", inline=True)
+            mEmbed.add_field(name="Egg ID", value=f"#{str(q4.content)}", inline=True)
+            mEmbed.add_field(name="Memory Limit", value=f"{str(q5.content)}MB", inline=True)
+            mEmbed.add_field(name="Disk Limit", value=f"{str(q6.content)}MB", inline=True)
+            mEmbed.add_field(name="CPU Limit", value=f"{str(q7.content)}%", inline=True)
+            mEmbed.add_field(name="Swap Limit", value="0%", inline=True)
+            mEmbed.add_field(name="Location", value="1", inline=True)
+            await ctx.send(embed=mEmbed)
+
+            q8 = await bot.wait_for('message', timeout=300.0, check=check)
+            if "cancel" in q8.content.lower():
+                return await ctx.send(embed=scEmbed)
+            elif "yes" in q8.content.lower():
+                client.servers.create_server(name=str(q1.content), user_id=int(q2.content), nest_id=int(q3.content),
+                egg_id=int(q4.content), memory_limit=int(q5.content), cpu_limit=int(q7.content), swap_limit=0,
+                disk_limit=int(q6.content), location_ids=[1])
+                await ctx.send(embed=sEmbed)
+            elif "no" in q8.content.lower():
+                return await ctx.send(embed=scEmbed)
+            else:
+                return await ctx.send("An error occured.")
+
         except asyncio.TimeoutError:
-            await ctx.send("You ran out of time!")
+            return await ctx.send("You ran out of time!")
+
+        except:
+            return await ctx.send("An error occured.")
+
         else:
             return
     else:
-        await ctx.send("What are you creating? ``Example: ?create server``")
+        return await ctx.send("What are you creating? ``Example: ?create server``")
 
-# GET PANEL USER        
+# GET PANEL USER
 @bot.command()
 async def getuser(ctx, *, arg1 = None):
     user = client.user.list_users(search=str(arg1))
@@ -107,6 +155,6 @@ async def link(ctx, arg:int=0, *, member: discord.Member):
     with open("linked.json", 'w') as f:
         json.dump(openf, f, indent=4)
         await ctx.send(f"Succesfully linked: ``{member}`` with Panel ID: ``{int(arg)}``")
-        
+
 
 bot.run('BOT_TOKEN', reconnect=True, bot=True)

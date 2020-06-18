@@ -102,7 +102,7 @@ async def create(ctx, *, arg1 = None):
             mEmbed.add_field(name="Disk Limit", value=f"{str(q6.content)}MB", inline=True)
             mEmbed.add_field(name="CPU Limit", value=f"{str(q7.content)}%", inline=True)
             mEmbed.add_field(name="Swap Limit", value="0%", inline=True)
-            mEmbed.add_field(name="Location", value="#1", inline=True)
+            mEmbed.add_field(name="Location", value="1", inline=True)
             await ctx.send(embed=mEmbed)
 
             q8 = await bot.wait_for('message', timeout=300.0, check=check)

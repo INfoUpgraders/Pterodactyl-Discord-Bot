@@ -6,7 +6,7 @@ import sys
 import time
 import traceback
 import typing
-from datetime import datetime
+from datetime import datetime, date, time, timezone
 
 import discord
 import pymongo
@@ -17,7 +17,7 @@ from pymongo import MongoClient
 bot = commands.Bot(command_prefix = ',', case_insensitve=True)
 bot.launch_time = datetime.utcnow()
 
-client = PterodactylClient('PANEL_LINK', 'SECRET_APPLICATION_API')
+client = PterodactylClient('https://panel.secureserviceranking.xyz', 'Fz5f9haXCV3RPwE23BCJM3R1wtDswwDKleJ45YlXU9lbOCf9')
 
 # ONLINE + STATUS EVENT
 @bot.event
@@ -116,35 +116,63 @@ async def create(ctx, *, arg1 = None):
             elif "no" in q8.content.lower():
                 return await ctx.send(embed=scEmbed)
             else:
-                return await ctx.send("An error occured.")
+                embed = discord.Embed(description="An error occured.",
+                colour=0xf95439, timestamp=ctx.message.created_at)
+                return await ctx.send(embed=embed)
 
         except asyncio.TimeoutError:
-            return await ctx.send("You ran out of time!")
+            embed = discord.Embed(description="You ran out of time!",
+            colour=0xf95439, timestamp=ctx.message.created_at)
+            return await ctx.send(embed=embed)
 
         except:
-            return await ctx.send("An error occured.")
+            embed = discord.Embed(description="An error occured.",
+            colour=0xf95439, timestamp=ctx.message.created_at)
+            return await ctx.send(embed=embed)
 
         else:
-            return
+            embed = discord.Embed(description="An error occured.",
+            colour=0xf95439, timestamp=ctx.message.created_at)
+            return await ctx.send(embed=embed)
     else:
-        return await ctx.send("What are you creating? ``Example: ?create server``")
+        embed = discord.Embed(description="What are you creating? ``Example: ?create server``",
+        colour=0x6a8dd3, timestamp=ctx.message.created_at)
+        return await ctx.send(embed=embed)
 
 # GET PANEL USER
 @bot.command()
 async def getuser(ctx, *, arg1 = None):
     user = client.user.list_users(search=str(arg1))
-    if user['data'][0]['attributes']['id'] is None:
-        await ctx.send(user)
-    else:
+    try:
         user_id = user['data'][0]['attributes']['id']
         username = user['data'][0]['attributes']['username']
         first_name = user['data'][0]['attributes']['first_name']
         last_name = user['data'][0]['attributes']['last_name']
+        email = user['data'][0]['attributes']['email']
         language = user['data'][0]['attributes']['language']
         admin = user['data'][0]['attributes']['root_admin']
         twofa = user['data'][0]['attributes']['2fa']
         created_at = user['data'][0]['attributes']['created_at']
-        await ctx.send(f"```User ID: {user_id}\nUsername: {username}\nFirst Name: {first_name}\nLast Name: {last_name}\nPanel Language: {language}\nAdmin Access: {admin}\n2FA: {twofa}\nCreated at: {created_at}```")
+        dt = str(created_at)
+        t = datetime.strptime(dt, "%Y-%m-%dT%H:%M:%S%z")
+        pt = datetime.strftime(t, "%B %d, %Y %I:%M%p")
+
+        embed = discord.Embed(description="User Info",
+        colour=0x6a8dd3, timestamp=ctx.message.created_at)
+        embed.add_field(name="User ID", value=user_id, inline=True)
+        embed.add_field(name="Username", value=username, inline=True)
+        embed.add_field(name="Email", value=email, inline=True)
+        embed.add_field(name="First Name", value=first_name, inline=True)
+        embed.add_field(name="Last Name", value=last_name, inline=True)
+        embed.add_field(name="Admin Access", value=admin, inline=True)
+        embed.add_field(name="2FA", value=twofa, inline=True)
+        embed.add_field(name="Language", value=language, inline=True)
+        embed.add_field(name="Created At", value=pt, inline=True)
+        await ctx.send(embed=embed)
+    except IndexError:
+        embed = discord.Embed(description="User Not Found!",
+        colour=0xf95439, timestamp=ctx.message.created_at)
+        await ctx.send(embed=embed)
 
 # LINK PANEL USERS
 @bot.command()
@@ -154,7 +182,9 @@ async def link(ctx, arg:int=0, *, member: discord.Member):
     openf[str(member.id)] = {'user_id': str(member.id), 'panel_id': int(arg)}
     with open("linked.json", 'w') as f:
         json.dump(openf, f, indent=4)
-        await ctx.send(f"Succesfully linked: ``{member}`` with Panel ID: ``{int(arg)}``")
+        embed = discord.Embed(description=f"Succesfully linked: ``{member}`` with Panel ID: ``{int(arg)}``",
+        colour=0x6a8dd3, timestamp=ctx.message.created_at)
+        await ctx.send(embed=embed)
 
 
-bot.run('BOT_TOKEN', reconnect=True, bot=True)
+bot.run('NzE2MDc0NjA1NzQzMTc3ODkw.XuuGgg.aLKsGzNcXwINBKA_upgzx2hg-HU', reconnect=True, bot=True)

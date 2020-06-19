@@ -17,7 +17,7 @@ from pymongo import MongoClient
 bot = commands.Bot(command_prefix = ',', case_insensitve=True)
 bot.launch_time = datetime.utcnow()
 
-client = PterodactylClient('https://panel.secureserviceranking.xyz', 'Fz5f9haXCV3RPwE23BCJM3R1wtDswwDKleJ45YlXU9lbOCf9')
+client = PterodactylClient('PANEL_LINK', 'SECRET_APPLICATION_API')
 
 # ONLINE + STATUS EVENT
 @bot.event
@@ -187,4 +187,4 @@ async def link(ctx, arg:int=0, *, member: discord.Member):
         await ctx.send(embed=embed)
 
 
-bot.run('NzE2MDc0NjA1NzQzMTc3ODkw.XuuGgg.aLKsGzNcXwINBKA_upgzx2hg-HU', reconnect=True, bot=True)
+bot.run('BOT_TOKEN', reconnect=True, bot=True)

@@ -182,7 +182,7 @@ async def link(ctx, arg:int=0, *, member: discord.Member):
     openf[str(member.id)] = {'user_id': str(member.id), 'panel_id': int(arg)}
     with open("linked.json", 'w') as f:
         json.dump(openf, f, indent=4)
-        embed = discord.Embed(description=f"Succesfully linked: ``{member}`` with Panel ID: ``{int(arg)}``",
+        embed = discord.Embed(description=f"Succesfully linked: {member.mention} with Panel ID: {int(arg)}",
         colour=0x6a8dd3, timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
 

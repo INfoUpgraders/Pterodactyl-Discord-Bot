@@ -12,7 +12,6 @@ import discord
 import pymongo
 from discord.ext import commands
 from pydactyl import PterodactylClient
-from pymongo import MongoClient
 
 bot = commands.Bot(command_prefix = ',', case_insensitve=True)
 bot.launch_time = datetime.utcnow()
